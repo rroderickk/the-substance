@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap");
 
 *,
 *::after,
 *::before {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
@@ -20,7 +20,7 @@ body {
   padding: 0;
   background: #0c0f13;
   overflow: hidden;
-  font-family: 'Sulphur Point', sans-serif;
+  font-family: "Sulphur Point", sans-serif;
   color: #8b8b8b;
   font-size: 0.9rem;
 }
@@ -30,7 +30,7 @@ a {
   text-decoration: none;
 }
 
-a:focus, 
+a:focus,
 a:hover {
   color: #8b8b8b;
 }
@@ -92,27 +92,32 @@ a:hover {
   z-index: 10000000;
 }
 
+#root > div > div {
+  pointer-events: none;
+}
+
 @media screen and (min-width: 53em) {
-	body {
-		overflow: hidden;
-	}
-	.frame {
+  body {
+    overflow: hidden;
+  }
+  .frame {
     display: grid;
     height: 100vh;
     padding: 2rem 3.7rem;
     pointer-events: none;
-		align-content: space-between;
-		grid-template-columns: 50% 50%;
-		grid-template-rows: auto auto auto;
-		grid-template-areas: 'title links'
-							'... ...'
-							'... nav';
-	}
-	.frame__title {
+    align-content: space-between;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "title links"
+      "... ..."
+      "... nav";
+  }
+  .frame__title {
     grid-area: title;
-	}
-	.frame__links {
-		grid-area: links;
+  }
+  .frame__links {
+    grid-area: links;
     justify-self: end;
     margin: 0;
   }
@@ -121,7 +126,7 @@ a:hover {
   }
   .frame__nav {
     grid-area: nav;
-		justify-self: end;
+    justify-self: end;
   }
   .bottom-left {
     padding: 0 0 2rem 3.7rem;

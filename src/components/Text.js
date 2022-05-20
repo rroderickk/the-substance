@@ -1,15 +1,15 @@
 import { FontLoader, Vector3, TextBufferGeometry } from "three"
 import React, { useCallback, useRef } from "react"
-import { useLoader, useFrame } from "react-three-fiber"
-import usePromise from "react-promise-suspense"
+import { useLoader, useFrame } from "@react-three/fiber"
+import { useAsset } from "use-asset"
 import lerp from "lerp"
 import state from "../store"
 
 function Text({ children, size = 1, left, right, top, bottom, color = "white", opacity = 1, height = 0.01, layers = 0, font = "/MOONGET_Heavy.blob", ...props }) {
   const data = useLoader(FontLoader, font)
-  const geom = usePromise(() => new Promise(res => res(new TextBufferGeometry(children, { font: data, size: 1, height, curveSegments: 32 }))), [children])
+  const geom = useAsset(() => new Promise((res) => res(new TextBufferGeometry(children, { font: data, size: 1, height, curveSegments: 32 }))), [children])
   const onUpdate = useCallback(
-    self => {
+    (self) => {
       const box = new Vector3()
       self.geometry.computeBoundingBox()
       self.geometry.boundingBox.getSize(box)
@@ -29,7 +29,7 @@ function Text({ children, size = 1, left, right, top, bottom, color = "white", o
   return (
     <group {...props} scale={[size, size, 0.1]}>
       <mesh geometry={geom} onUpdate={onUpdate} frustumCulled={false}>
-        <customMaterial ref={ref} attach="material" color={color} transparent opacity={opacity} />
+        <customMaterial ref={ref} color={color} transparent opacity={opacity} />
       </mesh>
     </group>
   )
